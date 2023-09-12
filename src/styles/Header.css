@@ -1,0 +1,131 @@
+.hero {
+  background: url('/public/images/Poster.png') top no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: table;
+  height: 600px;
+  width: 100%;
+  position: relative;
+}
+
+form {
+  border: 2px solid #d1d5db;
+  display: flex;
+  justify-content: space-between;
+  width: 525px;
+  height: 36px;
+  top: 22px;
+  left: 493px;
+  padding: 6px 10px 6px 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+i {
+  color: #fff;
+  font-weight: 100;
+}
+input {
+  background: transparent;
+  border: none;
+  width: 211px;
+  height: 24px;
+  color: #fff;
+  outline: none;
+}
+
+input::placeholder {
+  color: #fff;
+}
+
+button {
+  background: transparent;
+  border: none;
+}
+
+.description-box {
+  width: 404px;
+  height: 285px;
+  margin-top: 158px;
+  gap: 16px;
+}
+
+.signin {
+  color: #fff;
+  margin-right: 5px;
+}
+
+.logo {
+  text-decoration: none;
+}
+
+.logo h1 {
+  color: #fff;
+
+  outline: none;
+  margin-left: 10px;
+}
+
+.description-box p {
+  width: 302px;
+  height: 72px;
+  font-family: DM Sans sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.description-box h1 {
+  font-family: DM Sans;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 56px;
+  color: #fff;
+}
+
+.trailer {
+  background: #be123c;
+  width: 170px;
+  height: 36px;
+  padding: 6px 16px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-family: DM Sans sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 24px;
+  display: inline-block;
+  color: #fff;
+}
+
+.featured {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.featured h1 {
+  font-family: DM Sans;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 46.87px;
+  color: #000;
+}
+
+.see-more {
+  color: #be123c;
+  text-decoration: none;
+  font-family: DM Sans sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.country {
+  color: #9ca3af;
+  font-family: DM Sans sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15.62px;
+}

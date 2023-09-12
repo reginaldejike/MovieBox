@@ -99,6 +99,12 @@ button {
   color: #fff;
 }
 
+.featureMovie {
+  height: 604px;
+  top: 670px;
+  left: 34px;
+}
+
 .featured {
   display: flex;
   justify-content: space-between;

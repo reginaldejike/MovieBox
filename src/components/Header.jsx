@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/Header.css';
+import Footer from './Footer';
 
 const Header = () => {
   const [movie, setMovie] = useState([]);
@@ -57,7 +58,7 @@ const Header = () => {
           </div>
         </section>
       </div>
-      <div className='container mt-5'>
+      <div className='container mt-5 featureMovie'>
         <div className='featured'>
           <h1>Featured Movie</h1>
           <a href='' className='see-more'>
@@ -96,6 +97,7 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

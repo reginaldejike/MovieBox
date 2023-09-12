@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/MovieBox/static/css/main.1c248024.css",
+    "main.js": "/MovieBox/static/js/main.78e4fea4.js",
+    "static/js/787.e0dfb15e.chunk.js": "/MovieBox/static/js/787.e0dfb15e.chunk.js",
+    "static/media/Poster.png": "/MovieBox/static/media/Poster.a37f7a10b6a2578ccf01.png",
+    "index.html": "/MovieBox/index.html",
+    "main.1c248024.css.map": "/MovieBox/static/css/main.1c248024.css.map",
+    "main.78e4fea4.js.map": "/MovieBox/static/js/main.78e4fea4.js.map",
+    "787.e0dfb15e.chunk.js.map": "/MovieBox/static/js/787.e0dfb15e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1c248024.css",
+    "static/js/main.78e4fea4.js"
+  ]
+}

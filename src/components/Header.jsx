@@ -74,35 +74,31 @@ const Header = () => {
                 : m.title.toLowerCase().includes(search);
             })
             .map((m) => (
-              <div
-                className='col'
-                key={m.id}
-                onClick={() => {
-                  navigate(`/movie/${m.id}`);
-                }}
-              >
-                <div
-                  data-testid='movie-card'
-                  className='card  mt-5'
-                  style={{ width: '250px', border: 'none' }}
-                  key={m.id}
-                >
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}
-                    data-testid='movie-poster'
-                    className=''
-                    alt='card'
-                  />
-                  <div className='card-body'>
-                    <h5 className='card-title' data-testid='movie-title'>
-                      {m.title}
-                    </h5>
-                    <p className='' data-testid='movie-release-date'>
-                      {' '}
-                      {m.release_date}
-                    </p>
+              <div className='col' key={m.id}>
+                <Link to={`/movie/${m.id}`}>
+                  <div
+                    data-testid='movie-card'
+                    className='card  mt-5'
+                    style={{ width: '250px', border: 'none' }}
+                    key={m.id}
+                  >
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}
+                      data-testid='movie-poster'
+                      className=''
+                      alt='card'
+                    />
+                    <div className='card-body'>
+                      <h5 className='card-title' data-testid='movie-title'>
+                        {m.title}
+                      </h5>
+                      <p className='' data-testid='movie-release-date'>
+                        {' '}
+                        {m.release_date}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
         </div>

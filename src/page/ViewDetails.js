@@ -8,10 +8,44 @@ import Logout from '../components/images/Logout.png';
 import backdrop from '../components/images/Rectangle 29.png';
 import '../styles/ViewDetails.css';
 import useFetch from '../components/useFetch';
+import { useEffect, useState, useRef } from 'react';
 
 const ViewDetails = () => {
+  // const { id } = useParams();
   const { movie, loading, error } = useFetch();
   if (loading) return <h1> Is Loading ....</h1>;
+  if (error) throw error;
+  // const isMounted = useRef(false);
+  // const [movie, setMovie] = useState([]);
+  // const [error, setError] = useState(null);
+  // const [loading, setLoading] = useState(true);
+
+  // useEffect(() => {
+  //   isMounted.current = true;
+  //   async function fetchData() {
+  //     try {
+  //       const response = await fetch(
+  //         `https://api.themoviedb.org/3/movie/top_rated?api_key=dc49f98101ca64a4660533265f036686/${id}`
+  //       );
+  //       if (response.ok) {
+  //         const json = await response.json();
+  //         if (isMounted.current) setMovie(json.results);
+  //       } else {
+  //         throw response;
+  //       }
+  //     } catch (e) {
+  //       if (isMounted.current) setError(e);
+  //     } finally {
+  //       if (isMounted.current) setLoading(false);
+  //     }
+  //   }
+  //   fetchData();
+  //   return () => {
+  //     isMounted.current = false;
+  //   };
+  // });
+
+  if (loading) return <h1>loading</h1>;
   if (error) throw error;
 
   return (
@@ -48,7 +82,8 @@ const ViewDetails = () => {
         </div>
         <main>
           <div className='container'>
-            <h1>{movie.title}</h1>
+            <h1 data-testid='movie-title'>{movie.title}</h1>
+            <p data-testid='movie-overview'>{movie.overview}</p>
             {/* <img
               src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
               className='backdrop'

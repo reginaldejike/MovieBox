@@ -1,5 +1,5 @@
 .hero {
-  background: url('/public/images/Poster.png') top no-repeat;
+  background: url('/public/Poster.png') top no-repeat;
   background-size: cover;
   background-position: center;
   display: table;
@@ -54,15 +54,18 @@ button {
   margin-right: 5px;
 }
 
-.logo {
+.sticker {
   text-decoration: none;
+  color: #fff;
+  outline: none;
+  font-size: 24px;
+  font-family: DM sans;
+  font-weight: 700;
+  line-height: 24px;
 }
 
-.logo h1 {
-  color: #fff;
-
-  outline: none;
-  margin-left: 10px;
+.sticker img {
+  margin-right: 10px;
 }
 
 .description-box p {
@@ -99,16 +102,9 @@ button {
   color: #fff;
 }
 
-.featureMovie {
-  height: 604px;
-  top: 670px;
-  left: 34px;
-}
-
 .featured {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .featured h1 {
@@ -128,10 +124,30 @@ button {
   line-height: 24px;
 }
 
+.see-more:hover {
+  color: #be123c;
+}
+
 .country {
   color: #9ca3af;
   font-family: DM Sans sans-serif;
   font-weight: 700;
   font-size: 12px;
   line-height: 15.62px;
+}
+
+.card .item-p {
+  font-size: 12px;
+  font-family: DM Sans sans-serif;
+}
+
+.card-design {
+  width: 250px;
+  height: 513px;
+  border: 1px solid black;
+  margin-bottom: 20px;
+}
+
+.card-design img {
+  width: 250px;
 }

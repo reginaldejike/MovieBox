@@ -1,103 +1,112 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../styles/Header.css';
-import Footer from './Footer';
+import Logo from './images/tv.png';
+import Menu from './images/Menu.png';
+import Rating from './images/Rating.png';
+import Play from './images/Play.png';
+import Right from './images/Chevron right.png';
+import { Link, useNavigate } from 'react-router-dom';
+import useFetch from './useFetch';
+
+// const key = ;
 
 const Header = () => {
-  const [movie, setMovie] = useState([]);
-  useEffect(() => {
-    const getMovie = async () => {
-      const movieFromServer = await fetchMovie();
-      setMovie(movieFromServer);
-    };
-    getMovie();
-  }, []);
-  console.log(movie);
-  const fetchMovie = async () => {
-    const res = await fetch('https://api.themoviedb.org/3/movie/top_rated');
-    const data = await res.json();
-    return data;
-  };
+  const navigate = useNavigate();
+  const [search, setSearch] = useState('');
+  console.log(search);
 
+  const { movie, loading, error } = useFetch();
+  if (loading) return <h1>loading</h1>;
+  if (error) throw error;
   return (
     <>
       <div className='hero'>
         <nav className='navbar navbar-expand-lg'>
           <div className='container'>
-            <a href='' className='d-flex logo'>
-              <img src='/images/tv.png' alt='Logo' />
-              <h1>MovieBox</h1>
-            </a>
+            <Link href='' className='sticker'>
+              <img src={Logo} alt='Logo' />
+              MovieBox
+            </Link>
             <form className='search'>
               <input
                 type='text'
                 placeholder='What do you want to search?'
                 className='search-input'
+                onChange={(e) => setSearch(e.target.value)}
               />
               <button>
-                <i class='fa fa-search'></i>
+                <i className='fa fa-search'></i>
               </button>
             </form>
             <div className='navbar-header'>
               <button className='signin'>Sign in</button>
-              <img src='/images/Menu.png' alt='Menu' />
+              <img src={Menu} alt='Menu' />
             </div>
           </div>
         </nav>
         <section className='container'>
           <div className='description-box'>
             <h1>John Wick 3 : Parabellum</h1>
-            <img src='/images/Rating.png' alt='Rating' />
+            <img src={Rating} alt='Rating' />
             <p>
               John Wick is on the run after killing a member of the
               international assassins' guild, and with a $14 million price tag
               on his head, he is the target of hit men and women everywhere
             </p>
             <button className='trailer'>
-              <img src='/images/Play.png' alt='play' /> Watch Trailer
+              <img src={Play} alt='play' /> Watch Trailer
             </button>
           </div>
         </section>
       </div>
-      <div className='container mt-5 featureMovie'>
+      <main className='container mt-5'>
         <div className='featured'>
           <h1>Featured Movie</h1>
-          <a href='' className='see-more'>
-            See more <img src='/images/Chevron right.png' alt=' right' />
-          </a>
+          <Link href='' className='see-more'>
+            See more <img src={Right} alt=' right' />
+          </Link>
         </div>
-        <div
-          className='card mt-5'
-          style={{ width: '250px', height: '370px', borderRadius: '6px' }}
-        >
-          <img src='/images/Poster1.png' className='card-img-top' alt='card' />
-          <div className='card-body'>
-            <p className='mt-3 country'>USA, 2016-Current</p>
-            <h5 className='card-title'>Stranger Things</h5>
-            <div className='d-flex gap-4'>
-              <div className='d-flex'>
-                <img
-                  src='/images/imdb.png'
-                  width='30px'
-                  height='20px'
-                  alt='imdb'
-                />
-                <p>86.0/100</p>
+        <div className='row'>
+          {movie
+            .filter((m) => {
+              return search.toLowerCase() === ''
+                ? m
+                : m.title.toLowerCase().includes(search);
+            })
+            .map((m) => (
+              <div
+                className='col'
+                key={m.id}
+                onClick={() => {
+                  navigate(`/movie/${m.id}`);
+                }}
+              >
+                <div
+                  data-testid='movie-card'
+                  className='card  mt-5'
+                  style={{ width: '250px', border: 'none' }}
+                  key={m.id}
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}
+                    data-testid='movie-poster'
+                    className=''
+                    alt='card'
+                  />
+                  <div className='card-body'>
+                    <h5 className='card-title' data-testid='movie-title'>
+                      {m.title}
+                    </h5>
+                    <p className='' data-testid='movie-release-date'>
+                      {' '}
+                      {m.release_date}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className='d-flex'>
-                <img
-                  src='/images/tomato.png'
-                  width='15px'
-                  height='15px'
-                  alt='tomato'
-                />
-                <p>97%</p>
-              </div>
-            </div>
-            <p className='card-text'> action, adventure series</p>
-          </div>
+            ))}
         </div>
-      </div>
-      <Footer />
+      </main>
     </>
   );
 };

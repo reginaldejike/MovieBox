@@ -15,38 +15,6 @@ const ViewDetails = () => {
   const { movie, loading, error } = useFetch();
   if (loading) return <h1> Is Loading ....</h1>;
   if (error) throw error;
-  // const isMounted = useRef(false);
-  // const [movie, setMovie] = useState([]);
-  // const [error, setError] = useState(null);
-  // const [loading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //   isMounted.current = true;
-  //   async function fetchData() {
-  //     try {
-  //       const response = await fetch(
-  //         `https://api.themoviedb.org/3/movie/top_rated?api_key=dc49f98101ca64a4660533265f036686/${id}`
-  //       );
-  //       if (response.ok) {
-  //         const json = await response.json();
-  //         if (isMounted.current) setMovie(json.results);
-  //       } else {
-  //         throw response;
-  //       }
-  //     } catch (e) {
-  //       if (isMounted.current) setError(e);
-  //     } finally {
-  //       if (isMounted.current) setLoading(false);
-  //     }
-  //   }
-  //   fetchData();
-  //   return () => {
-  //     isMounted.current = false;
-  //   };
-  // });
-
-  if (loading) return <h1>loading</h1>;
-  if (error) throw error;
 
   return (
     <>

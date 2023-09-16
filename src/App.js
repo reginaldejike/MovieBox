@@ -26,7 +26,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<Movie />} />
+        <Route path='/MovieBox' element={<Movie />} />
         <Route path='/movie/:id' element={<ViewDetails />} />
         <Route path='/movie' element={<ListMovie />} />
         <Route path='/tvseries' element={<TvSesries />} />

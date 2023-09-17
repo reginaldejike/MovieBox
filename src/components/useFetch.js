@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 
 const api_key = process.env.REACT_APP_API_KEY;
 
+// https://api.themoviedb.org/3/discover/movie
+// https://api.themoviedb.org/3/movie/top_rated
 const useFetch = () => {
   const isMounted = useRef(false);
   const [movie, setMovie] = useState([]);
@@ -14,7 +16,7 @@ const useFetch = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}`
+          `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}`
         );
         if (response.ok) {
           const json = await response.json();

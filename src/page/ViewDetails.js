@@ -11,8 +11,14 @@ import useFetch from '../components/useFetch';
 import { useEffect, useState, useRef } from 'react';
 
 const ViewDetails = () => {
-  // const { id } = useParams();
-  const { movie, loading, error } = useFetch();
+  const { movieid } = useParams();
+  const { movie: movies, loading, error } = useFetch();
+
+  const movie = movies.find((m) => (m.id = movieid));
+
+  // let date = movie.release_date;
+  // let now = Date.UTC(date);
+
   if (loading) return <h1> Is Loading ....</h1>;
   if (error) throw error;
 
@@ -50,20 +56,18 @@ const ViewDetails = () => {
         </div>
         <main>
           <div className='container'>
-            <h1 data-testid='movie-title'>{movie.title}</h1>
-            <p data-testid='movie-overview'>{movie.overview}</p>
-            {/* <img
+            <img
               src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
               className='backdrop'
               alt=''
-            /> */}
+            />
+            <h1 data-testid='movie-title'>{movie.title}</h1>
             <div className='row'>
               <div className='col'>
                 <div className='info'>
-                  <p>{movie.title}</p>
-                  <p>.2022</p>
-                  <p>.PG-13</p>
-                  <p>2h 10m </p>
+                  <p data-testid='movie-release-date'>{movie.release_date}</p>
+                  <p data-testid='movie-overview'>{movie.overview}</p>
+                  <p data-testid='movie-runtime'>{movie.runtime}</p>
                 </div>
               </div>
               <div className='col'></div>

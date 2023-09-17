@@ -10,17 +10,29 @@ import '../styles/ViewDetails.css';
 import useFetch from '../components/useFetch';
 import { useEffect, useState, useRef } from 'react';
 
+const api_key = process.env.REACT_APP_API_KEY;
+
 const ViewDetails = () => {
-  const { movieid } = useParams();
-  const { movie: movies, loading, error } = useFetch();
+  const params = useParams();
+  const [movie, setMovie] = useState(null);
 
-  const movie = movies.find((m) => (m.id = movieid));
+  useEffect(() => {
+    fetch(`https://api.themoviedb.org/3/movie/${params.id}?api_key=${api_key}`)
+      .then((reponse) => reponse.json())
+      .then((data) => setMovie(data));
+  }, [params.id]);
 
-  // let date = movie.release_date;
+  const releaseDate = movie.release_date.split('-');
+  const year = parseInt(releaseDate[0]);
+  const month = parseInt(releaseDate[1]);
+  const day = parseInt(releaseDate[2]);
+
+  const utcDate = new Date(Date.UTC(year, month, day));
+  const utcDateString = utcDate.toString();
   // let now = Date.UTC(date);
 
-  if (loading) return <h1> Is Loading ....</h1>;
-  if (error) throw error;
+  // if (loading) return <h1> Is Loading ....</h1>;
+  // if (error) throw error;
 
   return (
     <>
@@ -62,15 +74,18 @@ const ViewDetails = () => {
               alt=''
             />
             <h1 data-testid='movie-title'>{movie.title}</h1>
-            <div className='row'>
-              <div className='col'>
-                <div className='info'>
-                  <p data-testid='movie-release-date'>{movie.release_date}</p>
-                  <p data-testid='movie-overview'>{movie.overview}</p>
-                  <p data-testid='movie-runtime'>{movie.runtime}</p>
-                </div>
-              </div>
-              <div className='col'></div>
+
+            <div className=''>
+              <p data-testid='movie-release-date'>{utcDateString}</p>
+              <p data-testid='movie-overview'>{movie.overview}</p>
+              {typeof movie.runtime === 'number' ? (
+                <span data-testid='movie-runtime'>
+                  {<span>{Math.floor(movie.runtime / 60)}</span>}h{' '}
+                  <span>{movie.runtime % 60}</span>m
+                </span>
+              ) : (
+                'N/A'
+              )}
             </div>
           </div>
         </main>

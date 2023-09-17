@@ -13,22 +13,53 @@ import { useEffect, useState, useRef } from 'react';
 const api_key = process.env.REACT_APP_API_KEY;
 
 const ViewDetails = () => {
-  const params = useParams();
-  const [movie, setMovie] = useState(null);
+  const { id } = useParams();
+  const [movie, setMovie] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const isMounted = useRef(false);
+  // const { movie: movies } = useFetch();
+  // const movies = movie.find((m) => (m.id = movieid));
+  // let movieid = id.toString();
+
+  // useEffect(() => {
+  //   isMounted.current = true;
+  //   async function fetchData() {
+  //     try {
+  //       const response = await fetch(
+  //         `https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`
+  //       );
+  //       if (response.ok) {
+  //         const json = await response.json();
+  //         if (isMounted.current) setMovie(json.results);
+  //       } else {
+  //         throw response;
+  //       }
+  //     } catch (e) {
+  //       if (isMounted.current) setError(e);
+  //     } finally {
+  //       if (isMounted.current) setLoading(false);
+  //     }
+  //   }
+  //   fetchData();
+  //   return () => {
+  //     isMounted.current = false;
+  //   };
+  // }, [id]);
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/${params.id}?api_key=${api_key}`)
+    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`)
       .then((reponse) => reponse.json())
       .then((data) => setMovie(data));
-  }, [params.id]);
+  }, [id]);
 
-  const releaseDate = movie.release_date.split('-');
-  const year = parseInt(releaseDate[0]);
-  const month = parseInt(releaseDate[1]);
-  const day = parseInt(releaseDate[2]);
+  // const releaseDate = movie.release_date.split('-');
+  // const year = parseInt(releaseDate[0]);
+  // const month = parseInt(releaseDate[1]);
+  // const day = parseInt(releaseDate[2]);
 
-  const utcDate = new Date(Date.UTC(year, month, day));
-  const utcDateString = utcDate.toString();
+  // const utcDate = new Date(Date.UTC(year, month, day));
+  // const utcDateString = utcDate.toString();
   // let now = Date.UTC(date);
 
   // if (loading) return <h1> Is Loading ....</h1>;
@@ -76,7 +107,9 @@ const ViewDetails = () => {
             <h1 data-testid='movie-title'>{movie.title}</h1>
 
             <div className=''>
-              <p data-testid='movie-release-date'>{utcDateString}</p>
+              <span data-testid='movie-release-date'>
+                {new Date(movie.release_date).toUTCString()}
+              </span>
               <p data-testid='movie-overview'>{movie.overview}</p>
               {typeof movie.runtime === 'number' ? (
                 <span data-testid='movie-runtime'>

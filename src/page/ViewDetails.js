@@ -22,36 +22,36 @@ const ViewDetails = () => {
   // const movies = movie.find((m) => (m.id = movieid));
   // let movieid = id.toString();
 
-  // useEffect(() => {
-  //   isMounted.current = true;
-  //   async function fetchData() {
-  //     try {
-  //       const response = await fetch(
-  //         `https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`
-  //       );
-  //       if (response.ok) {
-  //         const json = await response.json();
-  //         if (isMounted.current) setMovie(json.results);
-  //       } else {
-  //         throw response;
-  //       }
-  //     } catch (e) {
-  //       if (isMounted.current) setError(e);
-  //     } finally {
-  //       if (isMounted.current) setLoading(false);
-  //     }
-  //   }
-  //   fetchData();
-  //   return () => {
-  //     isMounted.current = false;
-  //   };
-  // }, [id]);
-
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`)
-      .then((reponse) => reponse.json())
-      .then((data) => setMovie(data));
+    isMounted.current = true;
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`
+        );
+        if (response.ok) {
+          const json = await response.json();
+          if (isMounted.current) setMovie(json);
+        } else {
+          throw response;
+        }
+      } catch (e) {
+        if (isMounted.current) setError(e);
+      } finally {
+        if (isMounted.current) setLoading(false);
+      }
+    }
+    fetchData();
+    return () => {
+      isMounted.current = false;
+    };
   }, [id]);
+
+  // useEffect(() => {
+  //   fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`)
+  //     .then((reponse) => reponse.json())
+  //     .then((data) => setMovie(data));
+  // }, [id]);
 
   // const releaseDate = movie.release_date.split('-');
   // const year = parseInt(releaseDate[0]);
@@ -62,8 +62,8 @@ const ViewDetails = () => {
   // const utcDateString = utcDate.toString();
   // let now = Date.UTC(date);
 
-  // if (loading) return <h1> Is Loading ....</h1>;
-  // if (error) throw error;
+  if (loading) return <h1> Is Loading ....</h1>;
+  if (error) throw error;
 
   return (
     <>

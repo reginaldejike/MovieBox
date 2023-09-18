@@ -151,3 +151,8 @@ button {
 .card-design img {
   width: 250px;
 }
+
+.heart {
+  position: absolute;
+  color: red;
+}

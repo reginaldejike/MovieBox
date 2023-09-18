@@ -7,12 +7,19 @@ import Play from './images/Play.png';
 import Right from './images/Chevron right.png';
 import { Link, useNavigate } from 'react-router-dom';
 import useFetch from './useFetch';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 // const key = ;
 
 const Header = () => {
-  const navigate = useNavigate();
   const [search, setSearch] = useState('');
+  const [toggle, setToggle] = useState(false);
+
+  const Toggle = () => {
+    setToggle(!toggle);
+  };
+
   console.log(search);
 
   const { movie, loading, error } = useFetch();
@@ -73,14 +80,20 @@ const Header = () => {
                 ? m
                 : m.title.toLowerCase().includes(search);
             })
+
             .map((m) => (
               <div className='col' key={m.id}>
+                <FontAwesomeIcon
+                  onClick={Toggle}
+                  style={{ color: toggle ? 'black' : 'red' }}
+                  icon={faHeart}
+                />
+
                 <Link to={`/movie/${m.id}`}>
                   <div
                     data-testid='movie-card'
                     className='card  mt-5'
                     style={{ width: '250px', border: 'none' }}
-                    key={m.id}
                   >
                     <img
                       src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}

@@ -1,5 +1,5 @@
 .hero {
-  background: url('/public/Poster.png') top no-repeat;
+  background: url("/public/Poster.png") top no-repeat;
   background-size: cover;
   background-position: center;
   display: table;
@@ -152,7 +152,14 @@ button {
   width: 250px;
 }
 
+.cover {
+  position: relative;
+}
 .heart {
   position: absolute;
   color: red;
+}
+
+.dislike {
+  color: black;
 }

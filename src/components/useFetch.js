@@ -1,5 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState, useRef } from "react";
 
 const api_key = process.env.REACT_APP_API_KEY;
 
@@ -35,7 +34,7 @@ const useFetch = () => {
       isMounted.current = false;
     };
   }, []);
-  console.log(movie);
+  // console.log(movie);
   return { movie, error, loading };
 };
 
